@@ -60,10 +60,8 @@ html,body{
   transition: all 0.3s ease;
 }
 .wrapper form .field #preview{
- letter-spacing: 5px;
  background: linear-gradient(-135deg, #c850c0, #4158d0);
-}
-
+} 
 .wrapper form .field input:focus,
 form .field input:valid{
   border-color: #4158d0;
