@@ -10,7 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 </head>
-<!-- //* Start body -->
 
 <body>
     <?php
@@ -18,7 +17,8 @@
     require "config.php";
     require "nav.php";
     $inN = false; //* for messages
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+    {
         $eName = trim($_POST['unm']);
         $password = $_POST['pwd'];
         $Jdate = $_POST['jd'];
@@ -57,7 +57,7 @@
         } 
         else 
         {
-            // //* INSERT NEW EMPLOYES
+            //* INSERT NEW EMPLOYES
             $insert = "INSERT INTO `_emp_regi`(`Ename`, `password`, `Jdate`, `dep`, `package`) VALUES ('$eName','$password','$Jdate','$depart','$package')";
             $Run = mysqli_query($con, $insert);
             $inN = true;

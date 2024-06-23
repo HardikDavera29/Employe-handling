@@ -19,7 +19,7 @@ html,body{
   color: #fff;
 }
 .wrapper{
-  height: 530px;
+  height: 460px;
   width: 400px;
   background: #fff;
   border-radius: 50px;
@@ -39,9 +39,9 @@ html,body{
   background: linear-gradient(-135deg, #c850c0, #4158d0);
 }
 .wrapper form{
-  height: 355px;
+  height: 300px;
   width: 400px;
-  padding: 30px 30px 60px 30px;
+  padding: 15px 30px 60px 30px;
 }
 .wrapper form .field{
   height: 60px;

@@ -18,7 +18,6 @@
   $Del = false;
   $upN = false; //* update messages
 ?>
-<!-- //* Start body -->
 
 <body>
   <?php
@@ -66,42 +65,42 @@
               <?php
             }
           } 
-        else 
-        {
-          $update = "UPDATE `_emp_regi` SET `Ename` = '$Name',`password` = '$pass',`Jdate` = '$date',`dep` = '$depa',`package` = '$pac' WHERE `_emp_regi`.`id` = '$sno'";
-          $RUN = mysqli_query($con, $update);
-          $upN = true;
-          if (!$RUN) die("Not Working" . mysqli_error($con));
-          if ($upN == true) 
+          else 
           {
-        ?>
-            <script type="text/javascript">
-              //* toastr message
-              $(document).ready(function() {
-                toastr.options = {
-                  "closeButton": true,
-                  "debug": false,
-                  "newestOnTop": true,
-                  "preventDuplicates": true,
-                  "onclick": null,
-                  "showDuration": "100",
-                  "hideDuration": "1000",
-                  "timeOut": "5000",
-                  "extendedTimeOut": "1000",
-                  "showEasing": "swing",
-                  "hideEasing": "linear",
-                  "showMethod": "show",
-                  "hideMethod": "hide"
-                }
-                //* show when page load
-                toastr.success('Information Updated successfully', 'Admin!');
-              });
-            </script>
-   <?php
+            $update = "UPDATE `_emp_regi` SET `Ename` = '$Name',`password` = '$pass',`Jdate` = '$date',`dep` = '$depa',`package` = '$pac' WHERE `_emp_regi`.`id` = '$sno'";
+            $RUN = mysqli_query($con, $update);
+            $upN = true;
+            if (!$RUN) die("Not Working" . mysqli_error($con));
+            if ($upN == true) 
+            {
+          ?>
+              <script type="text/javascript">
+                //* toastr message
+                $(document).ready(function() {
+                  toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "preventDuplicates": true,
+                    "onclick": null,
+                    "showDuration": "100",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "show",
+                    "hideMethod": "hide"
+                  }
+                  //* show when page load
+                  toastr.success('Information Updated successfully', 'Admin!');
+                });
+              </script>
+    <?php
+            }
           }
-        }
-      }
-    }
+       }
+     }
   ?>
 
   <!-- //*start modal -->
@@ -176,7 +175,7 @@
         if (!$Run1) die("Not Working" . mysqli_error($con));
 
         $n = 1;
-        /* //*Start the loop */
+        //* Start the loop 
         while ($row = mysqli_fetch_assoc($Run1)) {
         ?>
           <tr>
@@ -202,8 +201,7 @@
               <button class="editData btn btn-light btn-outline-dark" id="<?php echo $row['id']; ?>">Profile</button>
             </td>
           </tr>
-
-          <!-- //*Over the loop -->
+          //* Over the loop
         <?php
           $n++;
         }
@@ -253,6 +251,5 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" />
 
 </body>
-<!-- //* End of body -->
 
 </html>

@@ -9,31 +9,28 @@
      <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
      <title>EMPLOYE ADMIN | NAVBAR</title>
      <style>
-        .ba 
-        {
-            color: #7e22ce;
-        }
-        .navb .icons a{
-            color: black;
-        }
-        .navb .icons i:hover{
-            color: #7e22ce;
-            transition: transform 3s ease;
-            transform: rotate(360deg);
+     .title-ca {
+         color: #7e22ce;
+     }
 
-        }
+     .footer-b .icons a {
+         color: black;
+     }
+
+     .footer-b .icons i:hover {
+         color: #7e22ce;
+         transition: transform 3s ease;
+         transform: rotate(360deg);
+
+     }
      </style>
  </head>
 
  <body>
-     <!-- //* Footer start  -->
-     <nav class="mb-4 container mt-5  rounded navbar navbar-expand-lg w-100">
-         <div class="navb container-fluid mt-5">
-             <a class="navbar-brand ba fw-semibold" href="index.php">NexGen</a>
-             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                 <span class="navbar-toggler-icon"></span>
-             </button>
-             <div class="collapse navbar-collapse" id="navbarSupportedContent ">
+     <footer class="mb-4 container mt-5  rounded navbar navbar-expand-lg w-100">
+         <div class="footer-b container-fluid mt-5">
+             <a class="navbar-brand title-ca fw-semibold" href="index.php">NexGen</a>
+             <div class="collapse navbar-collapse" id="footerContent ">
                  <ul class="navbar-nav me-auto mb-lg-0">
                      <li class="nav-item">
                          <a class="nav-link ba" aria-current="page">| &nbsp; Copyrights &copy; 2024 NexGen.com</a>
@@ -47,8 +44,7 @@
                  </div>
              </div>
          </div>
-     </nav>
-     <!-- //*Footer end -->
+     </footer>
  </body>
 
  </html>

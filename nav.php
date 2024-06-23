@@ -37,9 +37,7 @@
                          <label for="mail" class="mt-3 text-dark"> E-Mail :</label>
                          <input type="text" name="mail" class="nav-inp form-control" value="em05@gmail.com"
                              id="mail" disabled>
-
-                         <button class=" ButtoN btn btn-danger btn-outline-danger mt-3 text-light"><a href="logout.php"
-                                 class="nav-link">Logout</a></button>
+                             
                          <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Close</button>
                      </form>
                      <!-- //*End of modal form-->
@@ -93,7 +91,6 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
      </script>
-     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
      <script>
      users = document.getElementsByClassName('users');
      Array.from(users).forEach((e) => {
