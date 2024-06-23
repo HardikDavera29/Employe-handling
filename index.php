@@ -26,7 +26,7 @@
    </div>
    
    <?php 
-      include "footer.php";  //* add footer from footer.php
+      include "footer.php";  //* include footer 
    ?>
 <!-- //* CDN for toastr -->
 </body>
