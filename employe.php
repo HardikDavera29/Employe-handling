@@ -201,10 +201,10 @@
               <button class="editData btn btn-light btn-outline-dark" id="<?php echo $row['id']; ?>">Profile</button>
             </td>
           </tr>
-          //* Over the loop
-        <?php
+          <?php
           $n++;
         }
+        // //* Over the loop 
         ?>
 
       </tbody>
