@@ -11,13 +11,6 @@
  </head>
  <?php
     include "config.php";
-    if (isset($_SESSION['login']))  $Adname = $_SESSION['user'];
-    else header("location:index.php");
-    $select12 = "SELECT * FROM _emp1 where `name` = '$Adname'";
-    $rUn = mysqli_query($con, $select12);
-    $rows = mysqli_fetch_assoc($rUn);
-    $contact = $rows['contact'];
-    $email1 = $rows['email'];
  ?>
 
  <body>
@@ -34,15 +27,15 @@
                      <form method="post" action="nav.php" class="form p-3 fw-semibold">
 
                          <label for="AdName" class="text-dark"> Admin Name :</label>
-                         <input type="text" name="AdName" value="<?php echo $Adname; ?>" class=" nav-inp form-control"
+                         <input type="text" name="AdName" value="Hardik" class=" nav-inp form-control"
                              id="AdName" disabled>
 
                          <label for="CONTACT" class="mt-3 text-dark"> Contact Number</label>
-                         <input type="text" name="CONTACT" maxlength="10" minlength="10" value="<?php echo $contact; ?>"
+                         <input type="text" name="CONTACT" maxlength="10" minlength="10" value="1122334455"
                              class="nav-inp form-control mt-1" id="CONTACT" disabled>
 
                          <label for="mail" class="mt-3 text-dark"> E-Mail :</label>
-                         <input type="text" name="mail" class="nav-inp form-control" value="<?php echo $email1; ?>"
+                         <input type="text" name="mail" class="nav-inp form-control" value="em05@gmail.com"
                              id="mail" disabled>
 
                          <button class=" ButtoN btn btn-danger btn-outline-danger mt-3 text-light"><a href="logout.php"
@@ -59,7 +52,7 @@
      <!-- //* navbar start  -->
      <nav class="nav-head sticky-top py-2 shadow-sm rounded navbar navbar-expand-lg w-100">
          <div class=" container-fluid w-100">
-             <a class="txt navbar-brand fw-semibold" href="home.php">NexGen</a>
+             <a class="txt navbar-brand fw-semibold" href="index.php">NexGen</a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
                  aria-label="Toggle navigation">
@@ -68,7 +61,7 @@
              <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
                  <ul class="navbar-nav me-auto mb-lg-0">
                      <li class="nav-item">
-                         <a class="nav-link linkU" href="home.php" aria-current="page">Home</a>
+                         <a class="nav-link linkU" href="index.php" aria-current="page">Home</a>
                      </li>
                      <li class="nav-item">
                          <a class="nav-link linkU" href="registration.php" aria-current="page">Registration</a>
@@ -82,7 +75,7 @@
                  </ul>
                  <div class="user-profile">
                      <div class="users name">
-                         <span><?php echo $_SESSION['user']; ?> </span>
+                         <span>Hardik</span>
                          <span>Admin</span>
                      </div>
                      <div>

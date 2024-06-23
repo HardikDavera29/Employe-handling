@@ -37,8 +37,6 @@
           {
             $login = true;
             $_SESSION['login'] = $login;  //* session for cross checking in home.php 
-            $_SESSION['toast'] = true; //* session For toastr in home.php
-            header("Location:home.php");
           }
           else
           {

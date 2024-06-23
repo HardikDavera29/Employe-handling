@@ -29,7 +29,7 @@
      <!-- //* Footer start  -->
      <nav class="mb-4 container mt-5  rounded navbar navbar-expand-lg w-100">
          <div class="navb container-fluid mt-5">
-             <a class="navbar-brand ba fw-semibold" href="home.php">NexGen</a>
+             <a class="navbar-brand ba fw-semibold" href="index.php">NexGen</a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
              </button>
@@ -40,8 +40,8 @@
                      </li>
                  </ul>
                  <div class="icons ">
-                     <a href="home.php"><i class="fa-solid fa-house fa-xl m-1"></i></a>
-                     <a href="https://www.linked.com/Hardik-d"><i class="fa-brands fa-xl fa-linkedin m-1"></i></a>
+                     <a href="index.php"><i class="fa-solid fa-house fa-xl m-1"></i></a>
+                     <a href="https://www.linked.com"><i class="fa-brands fa-xl fa-linkedin m-1"></i></a>
                      <a href="https://www.instagram.com"><i class="fa-brands fa-instagram  fa-xl m-1"></i></a>
                      <a href="https://www.facebook.com"><i class="fa-brands fa-facebook  fa-xl m-1 "></i></a>
                  </div>
