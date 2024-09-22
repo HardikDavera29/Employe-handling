@@ -119,8 +119,9 @@
             <label for="package" class="mt-3">&nbsp;Enter Package :</label>
             <input type="text" name="package" class="in form-control mt-1 p-2" maxlength="7" maxlength="4" id="package" placeholder="Enter Package..." required>
 
-            <input type="submit" value="Add Employee" class=" bu btn btn-primary mt-3 mb-5">
-            <input type="reset" value="Clear" class="btn btn-warning mt-3 mb-5">
+    
+            <input type="submit" value="Add Employee" class="btn btn-outline-primary btn-light fw-semibold mt-3 mb-5">
+            <input type="reset" value="Clear" class="btn btn-outline-warning btn-light mt-3 mb-5">
         </form>
     </div>
 

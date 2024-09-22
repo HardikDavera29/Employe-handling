@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -20,10 +20,12 @@
 }
 
 .linkU:hover {
-  border-bottom: 0.5px solid black;
-  padding-bottom: 3px;
-  transform: scale(1.05);
-  transition: transform 0.9s ease-out;
+  font-weight: 500;
+  color: #7e22ce;
+}
+
+.linkU:active{
+  border-radius: 5px;
 }
 
 .collapse .fa-2xl {
@@ -52,22 +54,21 @@
   font-size: 11px;
 }
 .header-text {
-    display: flex;
-    align-items:center;
-    justify-content: space-evenly;
- }
- .text {
-    font-size: 45px;
- }
- 
- .text b {
-    color: #7e22ce;
- }
- b:hover {
-    text-shadow: 0px 0px 20px #7e22ce;
- }
- .text .subconten {
-   font-size: 15px;
-   width: 455px;
- }
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.text {
+  font-size: 45px;
+}
 
+.text b {
+  color: #7e22ce;
+}
+b:hover {
+  text-shadow: 0px 0px 20px #7e22ce;
+}
+.text .subconten {
+  font-size: 15px;
+  width: 455px;
+}

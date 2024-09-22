@@ -137,7 +137,7 @@
             <label for="package1" class="mt-3 text-dark"> Package :</label>
             <input type="text" name="package1" maxlength="7" maxlength="4" class="inp form-control" id="package1">
 
-            <button name="updateBtn" class=" d btn btn-primary mt-2  btn-sm fw-3 rounded-2" style="margin-left: 10px;padding:8px 15px 8px 15px;" id="editID">
+            <button name="updateBtn" class=" d btn btn-primary mt-2 btn-sm fw-3 rounded-2" style="margin-left: 10px;padding:8px 15px 8px 15px;" id="editID">
               Edit
             </button>
             <button class="btn btn-danger p-2 btn-sm fw-3 rounded-2 mt-2" name="delete" id="editDelete">
@@ -155,7 +155,7 @@
     <div class="tb container mt-5 mb-5">
       <h1 class="fw-semibold mb-1">Employes&nbsp; Details</h1>
     </div>
-    <table id="myTable" class="table table-hover table-striped">
+    <table id="myTable" class="container table table-hover table-striped">
       <thead>
         <tr>
           <th>Serial No.</th>
