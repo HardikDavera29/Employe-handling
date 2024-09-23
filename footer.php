@@ -27,23 +27,23 @@
  </head>
 
  <body>
-     <footer class="mb-4 container mt-5  rounded navbar navbar-expand-lg w-100">
-         <div class="footer-b container-fluid mt-5">
-             <a class="navbar-brand title-ca fw-semibold" href="index.php">NexGen</a>
-             <div class="collapse navbar-collapse" id="footerContent ">
-                 <ul class="navbar-nav me-auto mb-lg-0">
-                     <li class="nav-item">
-                         <a class="nav-link ba" aria-current="page">| &nbsp; Copyrights &copy; 2024 NexGen.com</a>
-                     </li>
-                 </ul>
-                 <div class="icons ">
-                     <a href="index.php"><i class="fa-solid fa-house fa-xl m-1"></i></a>
-                     <a href="https://www.linked.com"><i class="fa-brands fa-xl fa-linkedin m-1"></i></a>
-                     <a href="https://www.instagram.com"><i class="fa-brands fa-instagram  fa-xl m-1"></i></a>
-                     <a href="https://www.facebook.com"><i class="fa-brands fa-facebook  fa-xl m-1 "></i></a>
-                 </div>
-             </div>
-         </div>
+     <footer class="mb-4 container mt-5 rounded navbar navbar-expand-lg w-100">
+        <div class="footer-b container-fluid mt-5 ">
+            <a class="navbar-brand title-ca fw-semibold" href="index.php">NexGen</a>
+            <div class="collapse navbar-collapse" id="footerContent ">
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link ba" aria-current="page">| &nbsp; Copyrights &copy; 2024 NexGen.com</a>
+                    </li>
+                </ul>
+                <div class="icons ">
+                    <a href="index.php"><i class="fa-solid fa-house fa-xl m-1"></i></a>
+                    <a href="https://www.linked.com"><i class="fa-brands fa-xl fa-linkedin m-1"></i></a>
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-instagram  fa-xl m-1"></i></a>
+                    <a href="https://www.facebook.com"><i class="fa-brands fa-facebook  fa-xl m-1 "></i></a>
+                </div>
+            </div>
+        </div>
      </footer>
  </body>
 

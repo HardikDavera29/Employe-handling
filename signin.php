@@ -22,7 +22,7 @@
         $userName = trim ( $_POST['Anm']);
         $_SESSION['user'] = $userName;
         $pwd = $_POST['pwd'];
-        $select = "SELECT * FROM `_emp1` WHERE `name`='$userName'";
+        $select = "SELECT * FROM `_admin_regi` WHERE `name`='$userName'";
         $RUN = mysqli_query($con, $select);
         if (!$RUN) die("Not working" . mysqli_error($con));
         
@@ -89,7 +89,7 @@
                 <input type="submit" value="SIGN IN" class="check-btn" name="button" title="click now" />
             </div>
             <div class="signup-link" id="linkButton" title="Sign up now">
-                Not a member? <a href="signup.php">Sign up now</a>
+                Not a member? <a href="signup.php">SignUp now</a>
             </div>
         </form>
     </div>

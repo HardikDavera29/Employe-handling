@@ -25,7 +25,7 @@
       $coN = trim($_POST['contact']);
       
       //* FOR CHECK DUPLICATE ADMIN --> 
-      $selct = "SELECT * FROM _emp1 where name='$aname'";
+      $selct = "SELECT * FROM _admin_regi where name='$aname'";
       $run = mysqli_query($con,$selct);
       $NumExitscheck = mysqli_num_rows($run);
       if($NumExitscheck == 1)
@@ -61,7 +61,7 @@
          {  
             $Hashpwd = password_hash($pwd , PASSWORD_DEFAULT);
             $Hashrpwd = password_hash($rpwd, PASSWORD_DEFAULT);
-            $insert = "INSERT INTO `_emp1` (`name`, `password`, `re-type password`, `contact`, `email`) VALUES ('$aname', '$Hashpwd', '$Hashrpwd', '$coN', '$Email')";
+            $insert = "INSERT INTO `_admin_regi` (`name`, `password`, `re-type password`, `contact`, `email`) VALUES ('$aname', '$Hashpwd', '$Hashrpwd', '$coN', '$Email')";
             $run = mysqli_query($con,$insert);
             if(!$run) die("not working".mysqli_error($con));
             if(mysqli_affected_rows($con)  > 0)
@@ -128,14 +128,14 @@
             <label for="email">Email</label>
          </div>
          <div class="field" title="Add contact">
-         <input type="text" name="contact" id="contact" minlength="10" maxlength="10" class="col-6" id="contact" required>
+         <input type="text" name="contact" id="contact" value="+91  " minlength="10" maxlength="10" class="col-6" id="contact" required>
             <label for="contact">Contact Number</label>
          </div>
          <div class="field" title="click now">
             <input type="submit" value="SIGN UP" >
          </div>
          <div class="signup-link" title="Sign in now">
-            Already a member? <a href="index.php">sign in now</a>
+            Already a member? <a href="signin.php">signIn now</a>
          </div>
       </form>
    </div>

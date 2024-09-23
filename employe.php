@@ -24,7 +24,7 @@
       if ($_SERVER['REQUEST_METHOD'] == 'POST') 
       {
         $sno = $_POST['sno'];
-        $Name = trim($_POST['unm1']);
+        $Name = $_POST['unm1'];
         $pass = $_POST['pwd1'];
         $date = $_POST['jd1'];
         $depa = $_POST['dep1'];
@@ -59,7 +59,7 @@
                     "hideMethod": "hide"
                   }
                   //* show when page load
-                  toastr.success('Employe Details Deleted successfully', 'Admin!');
+                  toastr.success('Employe Deleted successfully', 'Admin!');
                 });
               </script>
               <?php
@@ -68,11 +68,11 @@
           else 
           {
             $update = "UPDATE `_emp_regi` SET `Ename` = '$Name',`password` = '$pass',`Jdate` = '$date',`dep` = '$depa',`package` = '$pac' WHERE `_emp_regi`.`id` = '$sno'";
-            $RUN = mysqli_query($con, $update);
-            $upN = true;
-            if (!$RUN) die("Not Working" . mysqli_error($con));
+             $RUN = mysqli_query($con, $update);
+             $upN = true;
+             if (!$RUN) die("Not Working" . mysqli_error($con));
             if ($upN == true) 
-            {
+             {
           ?>
               <script type="text/javascript">
                 //* toastr message
@@ -155,7 +155,7 @@
     <div class="tb container mt-5 mb-5">
       <h1 class="fw-semibold mb-1">Employes&nbsp; Details</h1>
     </div>
-    <table id="myTable" class="container table table-hover table-striped">
+    <table class="container table table-hover table-striped">
       <thead>
         <tr>
           <th>Serial No.</th>

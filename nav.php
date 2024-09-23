@@ -50,7 +50,7 @@
      <!-- //* navbar start  -->
      <nav class="nav-head sticky-top py-2 shadow-sm rounded navbar navbar-expand-lg w-100">
          <div class=" container-fluid w-100">
-             <a class="txt navbar-brand fw-semibold" href="home.php">NexGen</a>
+             <a class="txt navbar-brand fw-semibold" href="index.php">NexGen</a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
                  aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
              <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
                  <ul class="navbar-nav me-auto mb-lg-0">
                      <li class="nav-item mx-2">
-                         <a class="nav-link linkU" href="home.php" aria-current="page">Home</a>
+                         <a class="nav-link linkU" href="index.php" aria-current="page">Home</a>
                      </li>
                      <li class="nav-item mx-2">
                          <a class="nav-link linkU" href="registration.php" aria-current="page">Registration</a>
