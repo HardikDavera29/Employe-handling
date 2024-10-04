@@ -1,6 +1,7 @@
 <?php
    session_start();
    $signup = false;
+   $_SESSION['count_error']= 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,14 +19,13 @@
    if($_SERVER['REQUEST_METHOD']=='POST')
    {
       $aname = trim($_POST['Anm']);
-      $_SESSION['USER'] = $aname;
       $pwd = $_POST['pwd'];
       $rpwd = $_POST['Rpwd'];
       $Email = $_POST['email'];
-      $coN = trim($_POST['contact']);
+      $coN = $_POST['contact'];
       
       //* FOR CHECK DUPLICATE ADMIN --> 
-      $selct = "SELECT * FROM _admin_regi where name='$aname'";
+      $selct = "SELECT * FROM _admin_regi where name='$aname' AND `contact`='$coN' AND `email`='$Email'";
       $run = mysqli_query($con,$selct);
       $NumExitscheck = mysqli_num_rows($run);
       if($NumExitscheck == 1)
@@ -64,9 +64,11 @@
             $insert = "INSERT INTO `_admin_regi` (`name`, `password`, `re-type password`, `contact`, `email`) VALUES ('$aname', '$Hashpwd', '$Hashrpwd', '$coN', '$Email')";
             $run = mysqli_query($con,$insert);
             if(!$run) die("not working".mysqli_error($con));
-            if(mysqli_affected_rows($con)  > 0)
+            if(mysqli_affected_rows($con)  == 1)
             {
                header("location:index.php");
+               $_SESSION['admin_register'] = 1;
+               $_SESSION['admin_name'] = $aname;
             }
          }
          else
@@ -128,7 +130,7 @@
             <label for="email">Email</label>
          </div>
          <div class="field" title="Add contact">
-         <input type="text" name="contact" id="contact" value="+91  " minlength="10" maxlength="10" class="col-6" id="contact" required>
+         <input type="text" name="contact" id="contact" value="+91 " minlength="10" maxlength="15" id="contact" required>
             <label for="contact">Contact Number</label>
          </div>
          <div class="field" title="click now">

@@ -137,10 +137,10 @@
             <label for="package1" class="mt-3 text-dark"> Package :</label>
             <input type="text" name="package1" maxlength="7" maxlength="4" class="inp form-control" id="package1">
 
-            <button name="updateBtn" class=" d btn btn-primary mt-2 btn-sm fw-3 rounded-2" style="margin-left: 10px;padding:8px 15px 8px 15px;" id="editID">
+            <button name="updateBtn" class="update_Btn fw-semibold my-3 mx-2 px-4 btn-sm rounded-2" id="editID">
               Edit
             </button>
-            <button class="btn btn-danger p-2 btn-sm fw-3 rounded-2 mt-2" name="delete" id="editDelete">
+            <button class="btn btn-danger btn-sm fw-3 rounded-2 " name="delete" id="editDelete" style="letter-spacing:1px;">
               Delete
             </button>
           </form>
@@ -198,7 +198,7 @@
               <?php echo $row['package']; ?>
             </td>
             <td class="text-center">
-              <button class="editData btn btn-light btn-outline-dark" id="<?php echo $row['id']; ?>">Profile</button>
+              <button class="editData btn" id="<?php echo $row['id']; ?>">Profile</button>
             </td>
           </tr>
           <?php

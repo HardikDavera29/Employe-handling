@@ -1,7 +1,6 @@
 <?php
   require "config.php";
   session_start();
-  $login = false;
   $ShowErr = true;
 ?>
 <!DOCTYPE html>
@@ -20,21 +19,18 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
         $userName = trim ( $_POST['Anm']);
-        $_SESSION['user'] = $userName;
         $pwd = $_POST['pwd'];
         $select = "SELECT * FROM `_admin_regi` WHERE `name`='$userName'";
-        $RUN = mysqli_query($con, $select);
-        if (!$RUN) die("Not working" . mysqli_error($con));
-        
+        $RUN = mysqli_query($con, $select);        
         if (mysqli_num_rows($RUN)==1) 
         { 
-        while($row  = mysqli_fetch_array($RUN))
-        {  
+            $row  = mysqli_fetch_array($RUN);
             //* Password validation
             if(password_verify($pwd, $row['password']))
             {
-                $login = true;
-                $_SESSION['login'] = $login;  //* session for cross checking 
+                $_SESSION['admin_login'] = 1;
+                $_SESSION['admin_name_login'] = $userName;
+                header('location:index.php');
             }
             else
             {
@@ -61,9 +57,10 @@
                     });
                 </script>
             <?php
+            $_SESSION['count_error']++;
+            if($_SESSION['count_error'] >= 2) header('location:signup.php');
             }
             //* over the password validations  
-        }
         } 
         else 
         {
@@ -75,7 +72,7 @@
 <body>
     <div class="wrapper">
         <div class="title" title="sign in">SIGN IN</div>
-        <form action="index.php" method="post">
+        <form action="signin.php" method="post">
             <div class="field">
                 <input type="text" name="Anm" id="Anm" title="Enter Admin Name" required autofocus />
                 <label for="Anm">Enter Admin Name</label>
@@ -95,9 +92,10 @@
     </div>
 
     <?php
-      if($ShowErr == false)
-      {
-          ?>
+    if($ShowErr == false)
+    {
+        if($_SESSION['count_error'] >= 2) header('location:signup.php');
+        ?>
     <script>
         $(document).ready(function() {
             toastr.options = {
@@ -120,6 +118,7 @@
         });
         </script>
     <?php
+      $_SESSION['count_error']++;
      }
      ?>
     <!-- //* CDN for toastr -->

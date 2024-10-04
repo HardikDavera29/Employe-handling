@@ -19,54 +19,21 @@
     $inN = false; //* for messages
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
-        $eName = trim($_POST['unm']);
-        $password = $_POST['pwd'];
-        $Jdate = $_POST['jd'];
-        $depart = $_POST['dep'];
-        $package = trim($_POST['package']);
+        if(isset($_POST['add_employe'])){
+            $eName = trim($_POST['unm']);
+            $password = $_POST['pwd'];
+            $Jdate = $_POST['jd'];
+            $depart = $_POST['dep'];
+            $package = trim($_POST['package']);
 
-        //* FOR CHECK DUPLICATE EMPLOYE
-        $select = "SELECT * FROM `_emp_regi` where Ename='$eName'";
-        $run = mysqli_query($con, $select);
-        $NumExitscheck = mysqli_num_rows($run);
-        if ($NumExitscheck == 1) 
-        {
-            ?>    
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": true,
-                            "preventDuplicates": true,
-                            "onclick": null,
-                            "showDuration": "100",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "show",
-                            "hideMethod": "hide"
-                        }
-                        //* show when page load
-                        toastr.error('Employe Already Existed', 'OOPS!');
-                    });
-                </script>
-            <?php
-        } 
-        else 
-        {
-            //* INSERT NEW EMPLOYES
-            $insert = "INSERT INTO `_emp_regi`(`Ename`, `password`, `Jdate`, `dep`, `package`) VALUES ('$eName','$password','$Jdate','$depart','$package')";
-            $Run = mysqli_query($con, $insert);
-            $inN = true;
-            if (!$Run) die("Not Working" . mysqli_error($con));
-            if ($inN == true) 
+            //* FOR CHECK DUPLICATE EMPLOYE
+            $select = "SELECT * FROM `_emp_regi` where Ename='$eName'";
+            $run = mysqli_query($con, $select);
+            $NumExitscheck = mysqli_num_rows($run);
+            if ($NumExitscheck == 1) 
             {
-                ?>
+                ?>    
                     <script type="text/javascript">
-                        //* toastr message
                         $(document).ready(function() {
                             toastr.options = {
                                 "closeButton": true,
@@ -84,10 +51,45 @@
                                 "hideMethod": "hide"
                             }
                             //* show when page load
-                            toastr.success('Employe Registerd Successfully', 'Admin!');
+                            toastr.error('Employe Already Existed', 'OOPS!');
                         });
                     </script>
                 <?php
+            } 
+            else 
+            {
+                //* INSERT NEW EMPLOYES
+                $insert = "INSERT INTO `_emp_regi`(`Ename`, `password`, `Jdate`, `dep`, `package`) VALUES ('$eName','$password','$Jdate','$depart','$package')";
+                $Run = mysqli_query($con, $insert);
+                $inN = true;
+                if (!$Run) die("Not Working" . mysqli_error($con));
+                if ($inN == true) 
+                {
+                    ?>
+                        <script type="text/javascript">
+                            //* toastr message
+                            $(document).ready(function() {
+                                toastr.options = {
+                                    "closeButton": true,
+                                    "debug": false,
+                                    "newestOnTop": true,
+                                    "preventDuplicates": true,
+                                    "onclick": null,
+                                    "showDuration": "100",
+                                    "hideDuration": "1000",
+                                    "timeOut": "5000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "show",
+                                    "hideMethod": "hide"
+                                }
+                                //* show when page load
+                                toastr.success('Employe Registerd Successfully', 'Admin!');
+                            });
+                        </script>
+                    <?php
+                }
             }
         }
     }
@@ -120,8 +122,8 @@
             <input type="text" name="package" class="in form-control mt-1 p-2" maxlength="7" maxlength="4" id="package" placeholder="Enter Package..." required>
 
     
-            <input type="submit" value="Add Employee" class="btn btn-outline-primary btn-light fw-semibold mt-3 mb-5">
-            <input type="reset" value="Clear" class="btn btn-outline-warning btn-light mt-3 mb-5">
+            <input type="submit" value="Add Employee" name="add_employe" class="addEmp btn fw-semibold mt-3 mb-5">
+            <input type="reset" value="Clear" class="btn btn-sm btn-outline-dark fw-semibold btn-light mt-3 mb-5">
         </form>
     </div>
 
