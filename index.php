@@ -18,70 +18,68 @@
 </head>
 
 <body>
-<?php
-   if(isset($_SESSION['admin_register'])){
-      if($_SESSION['admin_register']==1){
-         ?>
-         <script type="text/javascript">
-            $(document).ready(function() {
-            toastr.options={
-               "closeButton": true,
-               "debug": false,
-               "newestOnTop": true,
-               "preventDuplicates": true,
-               "onclick": null,
-               "showDuration": "100",
-               "hideDuration": "1000",
-               "timeOut": "5000",
-               "extendedTimeOut": "1000",
-               "showEasing": "swing",
-               "hideEasing": "linear",
-               "showMethod": "show",
-               "hideMethod": "hide"
-            }
-            //* show when page load
-            toastr.success('New Admin Registered!' ,'Successfully');
-            });
-         </script>
-         <?php
-         $_SESSION['admin_register']++;
+   <?php
+      if(isset($_SESSION['admin_register'])){
+         if($_SESSION['admin_register']==1){
+            ?>
+               <script type="text/javascript">
+                  $(document).ready(function() {
+                     toastr.options={
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "100",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "show",
+                        "hideMethod": "hide"
+                     }
+                     toastr.success('New Admin Registered!' ,'Successfully');
+                  });
+               </script>
+            <?php
+            $_SESSION['admin_register']++;
+         }
       }
-   }
-   if(isset($_SESSION['admin_login'])){
-      if($_SESSION['admin_login'] == 1){
+      if(isset($_SESSION['admin_login'])){
+         if($_SESSION['admin_login'] == 1){
          ?>
-         <script type="text/javascript">
-            $(document).ready(function() {
-            toastr.options={
-               "closeButton": true,
-               "debug": false,
-               "newestOnTop": true,
-               "preventDuplicates": true,
-               "onclick": null,
-               "showDuration": "100",
-               "hideDuration": "1000",
-               "timeOut": "5000",
-               "extendedTimeOut": "1000",
-               "showEasing": "swing",
-               "hideEasing": "linear",
-               "showMethod": "show",
-               "hideMethod": "hide"
-            }
-            //* show when page load
-            toastr.success('Admin LoggedIn!' ,'Successfully');
-            });
-         </script>
-         <?php
-         $_SESSION['admin_login']++;
+               <script type="text/javascript">
+                  $(document).ready(function() {
+                     toastr.options={
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "100",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "show",
+                        "hideMethod": "hide"
+                     }
+                     toastr.success('Admin LoggedIn!' ,'Successfully');
+                  });
+               </script>
+            <?php
+            $_SESSION['admin_login']++;
+         }
       }
-   }
-    ?>
-    <div class="header-text">
+   ?>
+   <div class="header-text">
       <div class="text">
-         <p>WelCome to <b>NexGen</b></p>
+         <p>Wel Come to <b>NexGen</b></p>
          <p class="subconten"> We provide a software for handle admin or back-end works , Gives sorting features or
                another and
-               improve funcationality to manage your bulk amount of data</p>
+               improve funcationality to manage your bulk amount of data.</p>
       </div>
       <div class="imag">
          <img src="admin-removebg.png" class="admin" alt="adminImg" height="550" width="550">

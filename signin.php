@@ -18,25 +18,24 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
-        $userName = trim ( $_POST['Anm']);
+        $userName = trim ($_POST['Anm']);
         $pwd = $_POST['pwd'];
         $select = "SELECT * FROM `_admin_regi` WHERE `name`='$userName'";
         $RUN = mysqli_query($con, $select);        
         if (mysqli_num_rows($RUN)==1) 
         { 
             $row  = mysqli_fetch_array($RUN);
-            //* Password validation
-            if(password_verify($pwd, $row['password']))
+            if(password_verify($pwd, $row['password'])) //* <---- Password Validation ------>
             {
-                $_SESSION['admin_login'] = 1;
-                $_SESSION['admin_name_login'] = $userName;
+                $_SESSION['admin_login'] = 1; //* If Admin LoggedIn Display Success Message In Home Page
+                $_SESSION['admin_name'] = $userName; 
                 header('location:index.php');
             }
-            else
+            else //* If Enter Wrong Password Display Error Message
             {
             ?>
                 <script>
-                $(document).ready(function() {
+                    $(document).ready(function() {
                         toastr.options = {
                             "closeButton": true,
                             "debug": false,
@@ -52,24 +51,83 @@
                             "showMethod": "show",
                             "hideMethod": "hide"
                         }
-                        //* show when page load
                         toastr.error('Invalid password', 'SORRY !');
                     });
                 </script>
             <?php
-            $_SESSION['count_error']++;
-            if($_SESSION['count_error'] >= 2) header('location:signup.php');
+                if(isset($_SESSION['count_error'])){
+                    $_SESSION['count_error']++; //* <---- Count The Limit Of False Entered Credentials ------>
+                    if($_SESSION['count_error'] >= 2) header('location:signup.php'); //* <---- Set The Limit For The Admin False Login ----->
+                }
             }
-            //* over the password validations  
         } 
-        else 
-        {
+        else{
             $ShowErr = false;
         }
     }
 ?>
 
 <body>
+    <?php
+    if(isset($_SESSION['redirect_for_false_crendentials'])){
+        if($_SESSION['redirect_for_false_crendentials'] == 0 ) //* <---- Display Message If Admin Without LoggedIn, Register The Employee ---->
+        {
+            ?>
+            <script>
+                $(document).ready(function() {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "100",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "show",
+                        "hideMethod": "hide",
+                        "positionclass":"toast-top-full-width"
+                    }
+                    toastr.info('Before SignIn, You can not register the employes', 'Admin!');
+                    });
+            </script>
+            <?php
+            $_SESSION['redirect_for_false_crendentials']++; //* Increase Number, Because This Message Show Only One Time At Page
+        }
+    }
+    if(isset($_SESSION['redirect_for_without_login_feedback'])){
+        if($_SESSION['redirect_for_without_login_feedback'] == 0 ) //* Without Login Admin, Entered Feedbacks
+        {
+        ?>
+            <script>
+                $(document).ready(function() {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "100",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "show",
+                        "hideMethod": "hide",
+                        "positionclass":"toast-top-full-width"
+                    }
+                    toastr.info('Before SignIn, You can not sends feedback', 'Admin!');
+                    });
+            </script>
+            <?php
+            $_SESSION['redirect_for_without_login_feedback']++; //* Increase Number, Because This Message Show Only One Time At Page
+        }
+    }
+    ?>
     <div class="wrapper">
         <div class="title" title="sign in">SIGN IN</div>
         <form action="signin.php" method="post">
@@ -94,33 +152,37 @@
     <?php
     if($ShowErr == false)
     {
-        if($_SESSION['count_error'] >= 2) header('location:signup.php');
-        ?>
-    <script>
-        $(document).ready(function() {
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "preventDuplicates": true,
-                "onclick": null,
-                "showDuration": "100",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "show",
-                "hideMethod": "hide"
+        if(isset($_SESSION['count_error'])){
+            if($_SESSION['count_error'] >= 2) //* <--- If Admin's SignIn Limits Are Over Redirect To SignIN --->
+            {
+                $_SESSION['upto_count_error'] = 0; //* <-- For Display Error Message Only One Time --->
+                header('location:signup.php');
             }
-            //* show when page load
-            toastr.error('Invalid Credentials', 'OOPS!');
-        });
+            $_SESSION['count_error']++;
+        }
+        ?>
+        <script>
+            $(document).ready(function() {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "preventDuplicates": true,
+                    "onclick": null,
+                    "showDuration": "100",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "show",
+                    "hideMethod": "hide"
+                }
+                toastr.error('Invalid Credentials', 'OOPS!');
+            });
         </script>
-    <?php
-      $_SESSION['count_error']++;
-     }
-     ?>
+    <?php } ?>
+    
     <!-- //* CDN for toastr -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" />

@@ -1,3 +1,6 @@
+<?php
+    include "config.php";
+ ?>
 <!DOCTYPE html>
  <html lang="en">
 
@@ -9,28 +12,19 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
      <title>EMPLOYE ADMIN | NAVBAR</title>
  </head>
- <?php
-    include "config.php";
- ?>
 
  <body>
     <?php
-    //*<----- code for select the user show the details of the user ---->
-    // $admin_name = '';
-    // if(isset($_SESSION['admin_name'])) {
-    //     $admin_name_regi = $_SESSION['admin_name'];
-    //     $select = "SELECT * FROM `_admin_regi` WHERE `name`='$admin_name_regi'";
-    //     $admin_name = $admin_name_regi;
-    // }
-    // else {
-    //     $admin_name_login = $_SESSION['admin_name_login'];
-    //     $select = "SELECT * FROM `_admin_regi` WHERE `name`='$admin_name_login'";
-    //     $admin_name = $admin_name_login;
-    // $row1 = mysqli_fetch_assoc($select_query);
-    // } 
-    // $select_query = $con->query($select);
+    $admin_name = '';
+    $select = '';
+    if(isset($_SESSION['admin_name'])){
+        $admin_name = $_SESSION['admin_name'];
+        $select = "SELECT * FROM `_admin_regi` WHERE `name`='$admin_name'";
+        $select_query = $con->query($select);
+        $row1 = mysqli_fetch_assoc($select_query);
+    }
     ?>
-     <!--//* start modal  -->
+     <!--//* Modal For Display The Admin's Details -->
      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
          <div class="modal-dialog">
              <div class="modal-content">
@@ -39,7 +33,6 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div class="dialog modal-body container">
-                     <!--//*start modal form -->
                      <form method="post" action="nav.php" class="form p-3 fw-semibold">
 
                          <label for="AdName" class="text-dark"> Admin Name :</label>
@@ -54,16 +47,13 @@
                          <input type="text" name="mail" class="nav-inp form-control" value="<?php echo $row1['email']; ?>"
                              id="mail" disabled>
                              
-                         <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Close</button>
+                         <button type="button" data-bs-dismiss="modal" class="btn btn-danger mt-3"><a href="logout.php" class="text-decoration-none text-light">Log Out</a></button>
                      </form>
-                     <!-- //*End of modal form-->
                  </div>
              </div>
          </div>
      </div>
-     <!-- //* End of modal -->
 
-     <!-- //* navbar start  -->
      <nav class="nav-head sticky-top py-2 shadow-sm rounded navbar navbar-expand-lg w-100">
          <div class=" container-fluid w-100">
              <a class="txt navbar-brand fw-semibold" href="index.php">NexGen</a>
@@ -88,20 +78,20 @@
                     </li>
                 </ul>
                 <?php
-                    if(isset($_SESSION['admin_login']) || isset($_SESSION['admin_register'])){
+                    if(isset($_SESSION['admin_login']) || isset($_SESSION['admin_register'])){ //* <-- If Admin LoggedIn Then Show Admin's Details -->
                 ?>
-                <div class="user-profile">
-                    <div class="users name">
-                        <!-- <span><?php echo $admin_name; ?></span> -->
-                        <span>Admin</span>
+                    <div class="user-profile">
+                        <div class="users name">
+                            <span><?php echo $admin_name; ?></span>
+                            <span>Admin</span>
+                        </div>
+                        <div>
+                            <i class=" users fa-sharp fa-solid fa-circle-user fa-2xl" style="color: #7e22ce;"></i>
+                        </div>
                     </div>
-                    <div>
-                        <i class=" users fa-sharp fa-solid fa-circle-user fa-2xl" style="color: #7e22ce;"></i>
-                    </div>
-                </div>
                 <?php 
                 }
-                else{ 
+                else{ //* <--- If Not Login, Show The Login/Register Buttons ---->
                 ?>
                     <div class="login-register">
                         <a href="signin.php" class="login-nav-btn btn">Log In</a>
@@ -111,8 +101,6 @@
             </div>
          </div>
      </nav>
-     <!-- //*navbar end -->
-
 
      <!--//* scripts and CDNs for jqueryies and other  -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

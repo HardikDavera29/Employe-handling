@@ -1,11 +1,11 @@
 <?php
 
   session_start();
-  if(isset($_SESSION['login']))
+  if(isset($_SESSION['admin_register'])||isset($_SESSION['admin_login'])) //* <-- If Admin LoggedIn Then Destroye All Sessions
   {
     session_unset();
     session_destroy();
+    header("Location:index.php"); //* <-- After Hitting Conditions Redirect To The Home Page -->
   }
-  header("Location:signin.php"); //* check for user login or not from index.php after logout works
 
 ?>

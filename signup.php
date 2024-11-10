@@ -2,7 +2,7 @@
    session_start();
    $signup = false;
    $_SESSION['count_error']= 0;
-?>
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,39 +24,36 @@
       $Email = $_POST['email'];
       $coN = $_POST['contact'];
       
-      //* FOR CHECK DUPLICATE ADMIN --> 
-      $selct = "SELECT * FROM _admin_regi where name='$aname' AND `contact`='$coN' AND `email`='$Email'";
+      //* <--- Check Admin Already Registered Or Not--> 
+      $selct = "SELECT * FROM _admin_regi where `name`='$aname' AND `contact`='$coN' AND `email`='$Email'";
       $run = mysqli_query($con,$selct);
       $NumExitscheck = mysqli_num_rows($run);
-      if($NumExitscheck == 1)
-      {
+      if($NumExitscheck == 1){
          ?>
-         <script type="text/javascript">
+            <script type="text/javascript">
                $(document).ready(function() {
-               toastr.options={
-                  "closeButton": true,
-                  "debug": false,
-                  "newestOnTop": true,
-                  "preventDuplicates": true,
-                  "onclick": null,
-                  "showDuration": "100",
-                  "hideDuration": "1000",
-                  "timeOut": "5000",
-                  "extendedTimeOut": "1000",
-                  "showEasing": "swing",
-                  "hideEasing": "linear",
-                  "showMethod": "show",
-                  "hideMethod": "hide"
-               }
-               //* show when page load
-               toastr.error('Admin Already Existed' ,'OOPS!');
+                  toastr.options={
+                     "closeButton": true,
+                     "debug": false,
+                     "newestOnTop": true,
+                     "preventDuplicates": true,
+                     "onclick": null,
+                     "showDuration": "100",
+                     "hideDuration": "1000",
+                     "timeOut": "5000",
+                     "extendedTimeOut": "1000",
+                     "showEasing": "swing",
+                     "hideEasing": "linear",
+                     "showMethod": "show",
+                     "hideMethod": "hide"
+                  }
+                  toastr.error('Admin Already Existed' ,'OOPS!');
                });
             </script>
-            <?php
+         <?php
       }
-      else
-      {
-         // *   FOR INSERT NEW USER -->
+      else{
+         // * <--- Insert New Admin -->
          if($pwd == $rpwd)
          {  
             $Hashpwd = password_hash($pwd , PASSWORD_DEFAULT);
@@ -67,12 +64,11 @@
             if(mysqli_affected_rows($con)  == 1)
             {
                header("location:index.php");
-               $_SESSION['admin_register'] = 1;
-               $_SESSION['admin_name'] = $aname;
+               $_SESSION['admin_register'] = 1; //* <-- Use For Display Message On Page For Success Register
+               $_SESSION['admin_name'] = $aname; //* Store The New Admin Name
             }
          }
-         else
-         {
+         else{
             ?>
             <script type="text/javascript">
                $(document).ready(function() {
@@ -91,13 +87,39 @@
                   "showMethod": "show",
                   "hideMethod": "hide"
                }
-               //* show when page load
                toastr.error('Passwords Do Not Match' ,'ERROR!');
                });
             </script>
             <?php
          }
       }
+   }
+   if(isset($_SESSION['upto_count_error'])){ //* <--- Redirected From The signin Because Admin's Signin Limits Sre Over ---->
+      if($_SESSION['upto_count_error'] == 0){
+         ?>
+            <script type="text/javascript">
+               $(document).ready(function() {
+                  toastr.options={
+                     "closeButton": true,
+                     "debug": false,
+                     "newestOnTop": true,
+                     "preventDuplicates": true,
+                     "onclick": null,
+                     "showDuration": "100",
+                     "hideDuration": "1000",
+                     "timeOut": "5000",
+                     "extendedTimeOut": "1000",
+                     "showEasing": "swing",
+                     "hideEasing": "linear",
+                     "showMethod": "show",
+                     "hideMethod": "hide"
+                  }
+                  toastr.error('Register Now,You entered wrong signIn credentials' ,'Admin!');
+               });
+            </script>
+         <?php
+      }    
+      $_SESSION['upto_count_error']++; //* Increase Number, Because Message Show Only One Time
    }
 ?>
 
@@ -142,8 +164,8 @@
       </form>
    </div>
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
    <!-- //* CDN for toastr -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css"/>
 
 </body>

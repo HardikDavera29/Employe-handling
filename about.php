@@ -26,49 +26,57 @@
 
 <?php 
     session_start();
+    include "nav.php"; 
     include "config.php";       
-    if($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
-        $nm = trim($_POST['nm']);
-        $mail = $_POST['mail'];
-        $num = $_POST['con'];
-        $insert = "INSERT INTO `contact_us`(`name`, `email`, `number`) VALUES ('$nm','$mail','$num')";
-        $RUn = mysqli_query($con,$insert);
-        if(!$RUn) die("Could not" . mysqli_error($con));
-        if(isset($_POST['button']))
-        {
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isset($_SESSION['admin_login']) || isset($_SESSION['admin_register'])){
+            if(isset($_SESSION['admin_name'])){ //*<---- If The Admin LoggedIn After Workout All Tasks ---->
+                $admin_name = $_SESSION['admin_name'];
+                $nm = trim($_POST['nm']);
+                $mail = $_POST['mail'];
+                $num = $_POST['con'];
+                $insert = "INSERT INTO `contact_us`(`cu_name`, `cu_email`, `cu_number`,`admin`) VALUES ('$nm','$mail','$num','$admin_name')";
+                $RUn = mysqli_query($con,$insert);
+                if(!$RUn) die("Could not" . mysqli_error($con));
+                if(isset($_POST['button']))
+                {
+                    ?>
+                        <script type="text/javascript"> 
+                            $(document).ready(function() {
+                                toastr.options = {
+                                    "closeButton": true,
+                                    "debug": false,
+                                    "newestOnTop": true,
+                                    "preventDuplicates": true,
+                                    "onclick": null,
+                                    "showDuration": "100",
+                                    "hideDuration": "1000",
+                                    "timeOut": "5000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "show",
+                                    "hideMethod": "hide"
+                                }
+                                toastr.success('Details Sended successfully', 'Admin!');
+                            });
+                        </script>
+                    <?php
+                }
+            }
+        }
+        else{
+            $_SESSION['redirect_for_without_login_feedback'] = 0; //* Without loggedIn sending feedback,So Redirect Admin Signin Page 
             ?>
-<script type="text/javascript">
-//* toastr message
-$(document).ready(function() {
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": true,
-        "preventDuplicates": true,
-        "onclick": null,
-        "showDuration": "100",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "show",
-        "hideMethod": "hide"
-    }
-    //* show when page load
-    toastr.success('Details Sended successfully', 'Admin!');
-});
-</script>
-<?php
+                <script>
+                    window.location="signin.php";
+                </script>
+            <?php
         }
     }
 ?>
 
 <body>
-    <?php
-        include "nav.php"; 
-    ?>
     <div class="head-titles">
         <p>FEEL FREE TO CONTACT US |</p>
     </div>
@@ -98,14 +106,13 @@ $(document).ready(function() {
         </form>
 
     </div>
-    <?php include "footer.php"; ?>
-    <!-- //* include footer -->
-    <!--//*Source files for jqueryCDN and other CDN -->
+    <?php include "footer.php"; ?> <!-- //* include footer -->
+
+    <!--//* Source files for jqueryCDN and other CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <!-- //* CDN for toastr css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" />
 </body>
 

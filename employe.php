@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  require "nav.php";
+  require "config.php";
+  $Del = false;
+  $upN = false;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,71 +18,58 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 </head>
-<?php
-  session_start();
-  require "nav.php";
-  require "config.php";
-  $Del = false;
-  $upN = false; //* update messages
-?>
 
 <body>
   <?php
-      if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-      {
-        $sno = $_POST['sno'];
-        $Name = $_POST['unm1'];
-        $pass = $_POST['pwd1'];
-        $date = $_POST['jd1'];
-        $depa = $_POST['dep1'];
-        $pac = $_POST['package1'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+    {
+      $sno = $_POST['sno'];
+      $Name = $_POST['unm1'];
+      $pass = $_POST['pwd1'];
+      $date = $_POST['jd1'];
+      $depa = $_POST['dep1'];
+      $pac = $_POST['package1'];
 
-        if (isset($_POST['sno'])) 
-        {
-          if (isset($_POST['delete'])) 
-          {
-            $id = $_POST['delete'];
-            $delete = "DELETE FROM _emp_regi WHERE id = '$id'";
-            $RUn = mysqli_query($con, $delete);
-            if ($RUn) $Del = true;
-            if ($Del == true) 
-            {
-    ?>        <script type="text/javascript">
-                //* toastr message
-                $(document).ready(function() {
-                  toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": true,
-                    "preventDuplicates": true,
-                    "onclick": null,
-                    "showDuration": "100",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "show",
-                    "hideMethod": "hide"
-                  }
-                  //* show when page load
-                  toastr.success('Employe Deleted successfully', 'Admin!');
-                });
-              </script>
-              <?php
-            }
-          } 
-          else 
-          {
-            $update = "UPDATE `_emp_regi` SET `Ename` = '$Name',`password` = '$pass',`Jdate` = '$date',`dep` = '$depa',`package` = '$pac' WHERE `_emp_regi`.`id` = '$sno'";
-             $RUN = mysqli_query($con, $update);
-             $upN = true;
-             if (!$RUN) die("Not Working" . mysqli_error($con));
-            if ($upN == true) 
-             {
+      if (isset($_POST['sno'])){
+        if (isset($_POST['delete'])){ //* <----- Script For Delete The Employee ------->
+          $id = $_POST['delete'];
+          $delete = "DELETE FROM _emp_regi WHERE id = '$id'";
+          $RUn = mysqli_query($con, $delete);
+          if ($RUn) $Del = true;
+          if ($Del == true){
           ?>
+            <script type="text/javascript">
+              $(document).ready(function() {
+                toastr.options = {
+                  "closeButton": true,
+                  "debug": false,
+                  "newestOnTop": true,
+                  "preventDuplicates": true,
+                  "onclick": null,
+                  "showDuration": "100",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "show",
+                  "hideMethod": "hide"
+                }
+                toastr.success('Employe Deleted successfully', 'Admin!'); //*<--- Message For Performed Task Successfully ---->
+              });
+            </script>
+            <?php
+          }
+        } 
+        else {
+          if(isset($_POST['updateBtn'])){ //* <----- Script For Update The Employee -------> 
+            $update = "UPDATE `_emp_regi` SET `Ename` = '$Name',`password` = '$pass',`Jdate` = '$date',`dep` = '$depa',`package` = '$pac' WHERE `_emp_regi`.`id` = '$sno'";
+            $RUN = mysqli_query($con, $update);
+            $upN = true;
+            if (!$RUN) die("Not Working" . mysqli_error($con));
+            if ($upN == true){
+            ?>
               <script type="text/javascript">
-                //* toastr message
                 $(document).ready(function() {
                   toastr.options = {
                     "closeButton": true,
@@ -92,18 +86,17 @@
                     "showMethod": "show",
                     "hideMethod": "hide"
                   }
-                  //* show when page load
-                  toastr.success('Information Updated successfully', 'Admin!');
+                  toastr.success('Information Updated successfully', 'Admin!'); //*<--- Message For Performed Task Successfully ---->
                 });
               </script>
-    <?php
+            <?php
             }
           }
-       }
-     }
-  ?>
-
-  <!-- //*start modal -->
+        }
+      }
+    }
+  ?>   
+  <!--//* Show Modal ------->  
   <div class="modal fade" id="EDITmodal" aria-labelledby="EDITmodal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -112,7 +105,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="dialog modal-body container">
-          <!--//*start modal form -->
           <form action="employe.php" method="post" class="form p-3 fw-semibold">
             <input type="hidden" name="sno" id="sno">
 
@@ -144,16 +136,13 @@
               Delete
             </button>
           </form>
-          <!-- //*End of modal form-->
         </div>
       </div>
     </div>
   </div>
-  <!-- //*End of modal -->
   <div>
-
     <div class="tb container mt-5 mb-5">
-      <h1 class="fw-semibold mb-1">Employes&nbsp; Details</h1>
+      <h1 class="fw-semibold mb-1">Employes&nbsp; Detail</h1>
     </div>
     <table class="container table table-hover table-striped">
       <thead>
@@ -169,47 +158,51 @@
       </thead>
       <tbody>
         <?php
-
-        $select = "SELECT * FROM `_emp_regi`";
-        $Run1 = mysqli_query($con, $select);
-        if (!$Run1) die("Not Working" . mysqli_error($con));
-
-        $n = 1;
-        //* Start the loop 
-        while ($row = mysqli_fetch_assoc($Run1)) {
+          if(!isset($_SESSION['admin_name'])){ 
+            ?>
+            <tr></tr>
+            <tr>
+              <td colspan="7" class="text-center fs-5" style="letter-spacing:2px;">Empty List</td>
+            </tr>
+            <?php }
+          else{
+            $admin_name = $_SESSION['admin_name'];
+            $select = "SELECT * FROM `_emp_regi` where `admin`='$admin_name'";
+            $Run1 = mysqli_query($con, $select);
+            if (!$Run1) die("Not Working" . mysqli_error($con));
+            $n = 1;
+            while ($row = mysqli_fetch_assoc($Run1)) {  
+            ?>
+              <tr>
+                <td>
+                  <?php echo $n; ?>
+                </td>
+                <td>
+                  <?php echo $row['Ename']; ?>
+                </td> 
+                <td>
+                  <?php echo $row['password']; ?>
+                </td>
+                <td>
+                  <?php echo $row['Jdate']; ?>
+                </td>
+                <td>
+                  <?php echo $row['dep']; ?>
+                </td>
+                <td>
+                  <?php echo $row['package']; ?>
+                </td>
+                <td class="text-center">
+                  <button class="editData btn" id="<?php echo $row['id']; ?>">Profile</button>
+                </td>
+              </tr>
+              <?php
+              $n++;
+            }
+          }
         ?>
-          <tr>
-            <td>
-              <?php echo $n; ?>
-            </td>
-            <td>
-              <?php echo $row['Ename']; ?>
-            </td>
-            <td>
-              <?php echo $row['password']; ?>
-            </td>
-            <td>
-              <?php echo $row['Jdate']; ?>
-            </td>
-            <td>
-              <?php echo $row['dep']; ?>
-            </td>
-            <td>
-              <?php echo $row['package']; ?>
-            </td>
-            <td class="text-center">
-              <button class="editData btn" id="<?php echo $row['id']; ?>">Profile</button>
-            </td>
-          </tr>
-          <?php
-          $n++;
-        }
-        // //* Over the loop 
-        ?>
-
       </tbody>
     </table>
-
   </div>
 
   <!--//* Source files for jqueryCDN and other CDN -->
@@ -222,7 +215,7 @@
       $("#myTable").DataTable();
     });
 
-    //* Edit feature script */
+    //* <---- Edit feature ------> */
     edits = document.getElementsByClassName("editData");
     Array.from(edits).forEach((e) => {
       e.addEventListener("click", (y) => {
@@ -240,14 +233,14 @@
         sno.value = y.target.id;
         editID.value = y.target.id;
         editDelete.value = y.target.id;
-        //* toggle for open modal */
+        
+        //* <---- toggle for open modal -----> */
         $("#EDITmodal").modal("toggle");
       });
     });
   </script>
 
   <!--//* Include Footer -->
-  <?php include "footer.php"; ?>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" />
 
 </body>
